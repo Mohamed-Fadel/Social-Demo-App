@@ -1,13 +1,13 @@
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
-    ext.kotlin_version = "1.4.20"
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
     dependencies {
-        classpath "com.android.tools.build:gradle:4.1.0"
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
+        classpath "com.android.tools.build:gradle:${Versions.gradle}"
+        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:${Versions.kotlin}"
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,7 +18,16 @@ allprojects {
     repositories {
         google()
         jcenter()
+        maven { url "https://jitpack.io" }
     }
+}
+
+ext {
+    // query git for the SHA, Tag and commit count. Use these to automate versioning.
+    gitSha = 'git rev-parse --short HEAD'.execute([], project.rootDir).text.trim()
+    gitTag = 'git describe --tags'.execute([], project.rootDir).text.trim()
+    gitCommitCount = 100 + Integer.parseInt('git rev-list --count HEAD'.execute([], project.rootDir).text.trim() ?: '0')
+    gitTimestamp = 'git log -n 1 --format=%at'.execute([], rootDir).text.trim()
 }
 
 task clean(type: Delete) {

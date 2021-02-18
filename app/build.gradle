@@ -1,28 +1,85 @@
-plugins {
-    id 'com.android.application'
-    id 'kotlin-android'
-}
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
 
 android {
-    compileSdkVersion 30
-    buildToolsVersion "30.0.3"
-
+    compileSdkVersion Versions.compile_sdk
+    buildToolsVersion Versions.build_tool
     defaultConfig {
         applicationId "com.example.newsfeedtestapp"
-        minSdkVersion 21
-        targetSdkVersion 30
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion Versions.min_sdk
+        targetSdkVersion Versions.target_sdk
+        versionCode rootProject.ext.gitCommitCount
+        versionName rootProject.ext.gitTag
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    }
 
+        vectorDrawables.useSupportLibrary = true
+
+        buildConfigField 'String', 'GIT_SHA', "\"${gitSha}\""
+        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp}"
+    }
+    packagingOptions {
+        exclude 'META-INF/LICENSE'
+        exclude 'META-INF/NOTICE'
+        exclude 'LICENSE.txt'
+        exclude 'META-INF/NOTICE.txt'
+        exclude 'META-INF/LICENSE.txt'
+        exclude 'META-INF/services/javax.annotation.processing.Processor'
+    }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
+    signingConfigs {
+        // We need to sign debug builds with a debug key to make firebase auth happy
+        debug {
+            storeFile file("../debug.keystore")
+            keyAlias "alias"
+            keyPassword "password"
+            storePassword "password"
+        }
+
+        release {
+            storeFile file("../release.keystore")
+            keyAlias "DeliveryReleaseKey"
+            keyPassword "DeliveryP@ssW0rd"
+            storePassword "DeliveryP@ssW0rd"
+        }
+    }
+    dexOptions {
+        javaMaxHeapSize "4g"
+    }
+    applicationVariants.all { variant ->
+        // Delete unaligned APKs and manifest junk after
+        def assembleTask = "assemble${variant.name.capitalize()}"
+        tasks[assembleTask].doLast {
+            // Enable by adding "-P notify" to end of your ./gradlew command
+            if (project.hasProperty("notify")) {
+                "terminal-notifier -message '${assembleTask}-->DONE' -sound 'Ping'".execute()
+            }
+        }
+    }
+    dataBinding {
+        enabled true
+    }
+
+    androidExtensions {
+        experimental = true
+    }
+
+    lintOptions {
+        abortOnError true
+        check 'NewApi', 'InlinedApi'
+        fatal 'NewApi', 'InlinedApi'
+        enable 'UnusedResources'
+        checkReleaseBuilds true
+        textOutput 'stdout'
+    }
+
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
         targetCompatibility JavaVersion.VERSION_1_8
@@ -33,12 +90,14 @@ android {
 }
 
 dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation Libraries.kotlin_stdlib
+    implementation Libraries.core_ktx
 
-    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
-    implementation 'androidx.core:core-ktx:1.3.2'
-    implementation 'androidx.appcompat:appcompat:1.2.0'
-    implementation 'com.google.android.material:material:1.3.0'
-    testImplementation 'junit:junit:4.+'
-    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+    implementation SupportLibraries.appcompat
+    implementation Libraries.google_material
+
+    testImplementation TestLibraries.junit
+    androidTestImplementation AndroidTestLibraries.junit
+    androidTestImplementation AndroidTestLibraries.espresso
 }
