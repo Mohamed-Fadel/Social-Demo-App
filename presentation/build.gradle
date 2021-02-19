@@ -91,12 +91,22 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    // kotlin
     implementation Libraries.kotlin_stdlib
     implementation Libraries.core_ktx
 
+    // support & design (android + google)
     implementation SupportLibraries.appcompat
     implementation Libraries.google_material
 
+    // dagger
+    implementation Libraries.dagger_android
+    implementation Libraries.dagger_android_support
+    kapt Libraries.dagger_compiler
+    kapt Libraries.dagger_android_processor
+
+    // testing
     testImplementation TestLibraries.junit
     androidTestImplementation AndroidTestLibraries.junit
     androidTestImplementation AndroidTestLibraries.espresso
