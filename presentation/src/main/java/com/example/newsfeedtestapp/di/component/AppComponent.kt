@@ -1,6 +1,10 @@
-package com.example.newsfeedtestapp.di
+package com.example.newsfeedtestapp.di.component
 
 import com.example.newsfeedtestapp.MainApplication
+import com.example.newsfeedtestapp.di.module.ActivityBindingModule
+import com.example.newsfeedtestapp.di.module.AppModule
+import com.example.newsfeedtestapp.di.module.NetworkModule
+import com.example.newsfeedtestapp.di.module.ViewModelModule
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector

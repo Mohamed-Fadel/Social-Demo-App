@@ -1,6 +1,7 @@
-package com.example.newsfeedtestapp.di
+package com.example.newsfeedtestapp.di.module
 
 import androidx.lifecycle.ViewModelProvider
+import com.example.newsfeedtestapp.di.AppViewModelFactory
 import dagger.Binds
 import dagger.Module
 

@@ -1,4 +1,4 @@
-package com.example.newsfeedtestapp.di
+package com.example.newsfeedtestapp.di.qualifier
 
 import javax.inject.Qualifier
 

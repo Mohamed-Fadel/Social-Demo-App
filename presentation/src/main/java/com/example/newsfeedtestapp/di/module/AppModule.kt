@@ -1,4 +1,4 @@
-package com.example.newsfeedtestapp.di
+package com.example.newsfeedtestapp.di.module
 
 import android.content.Context
 import com.example.newsfeedtestapp.MainApplication
