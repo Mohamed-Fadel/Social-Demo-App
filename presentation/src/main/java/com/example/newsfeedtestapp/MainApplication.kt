@@ -1,6 +1,6 @@
 package com.example.newsfeedtestapp
 
-import com.example.newsfeedtestapp.di.DaggerAppComponent
+import com.example.newsfeedtestapp.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.support.DaggerApplication
 
