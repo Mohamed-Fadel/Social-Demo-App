@@ -1,11 +1,9 @@
-plugins {
-    id 'java-library'
-    id 'kotlin'
-}
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
 
 java {
-    sourceCompatibility = JavaVersion.VERSION_1_8
-    targetCompatibility = JavaVersion.VERSION_1_8
+    sourceCompatibility = Versions.javaSourceCompatibility
+    targetCompatibility = Versions.javaTargetCompatibility
 }
 
 dependencies {

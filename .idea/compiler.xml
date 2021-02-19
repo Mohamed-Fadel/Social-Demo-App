@@ -2,7 +2,9 @@
 <project version="4">
   <component name="CompilerConfiguration">
     <bytecodeTargetLevel target="1.7">
+      <module name="NewsFeedTestApp.app" target="1.8" />
       <module name="NewsFeedTestApp.buildSrc" target="1.8" />
+      <module name="NewsFeedTestApp.data" target="1.8" />
       <module name="NewsFeedTestApp.domain" target="1.8" />
       <module name="NewsFeedTestApp.presentation" target="1.8" />
     </bytecodeTargetLevel>

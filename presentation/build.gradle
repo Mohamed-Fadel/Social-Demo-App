@@ -1,110 +1,45 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
-apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 
 android {
     compileSdkVersion Versions.compile_sdk
     buildToolsVersion Versions.build_tool
     defaultConfig {
-        applicationId "com.example.newsfeedtestapp"
         minSdkVersion Versions.min_sdk
         targetSdkVersion Versions.target_sdk
         versionCode rootProject.ext.gitCommitCount
         versionName rootProject.ext.gitTag
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-
-        vectorDrawables.useSupportLibrary = true
-
-        buildConfigField 'String', 'GIT_SHA', "\"${gitSha}\""
-        buildConfigField 'long', 'GIT_TIMESTAMP', "${gitTimestamp}"
+        consumerProguardFiles "consumer-rules.pro"
     }
-    packagingOptions {
-        exclude 'META-INF/LICENSE'
-        exclude 'META-INF/NOTICE'
-        exclude 'LICENSE.txt'
-        exclude 'META-INF/NOTICE.txt'
-        exclude 'META-INF/LICENSE.txt'
-        exclude 'META-INF/services/javax.annotation.processing.Processor'
-    }
+
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
-    signingConfigs {
-        // We need to sign debug builds with a debug key to make firebase auth happy
-        debug {
-            storeFile file("../debug.keystore")
-            keyAlias "alias"
-            keyPassword "password"
-            storePassword "password"
-        }
-
-        release {
-            storeFile file("../release.keystore")
-            keyAlias "DeliveryReleaseKey"
-            keyPassword "DeliveryP@ssW0rd"
-            storePassword "DeliveryP@ssW0rd"
-        }
-    }
-    dexOptions {
-        javaMaxHeapSize "4g"
-    }
-    applicationVariants.all { variant ->
-        // Delete unaligned APKs and manifest junk after
-        def assembleTask = "assemble${variant.name.capitalize()}"
-        tasks[assembleTask].doLast {
-            // Enable by adding "-P notify" to end of your ./gradlew command
-            if (project.hasProperty("notify")) {
-                "terminal-notifier -message '${assembleTask}-->DONE' -sound 'Ping'".execute()
-            }
-        }
-    }
-    dataBinding {
-        enabled true
-    }
-
-    androidExtensions {
-        experimental = true
-    }
-
-    lintOptions {
-        abortOnError true
-        check 'NewApi', 'InlinedApi'
-        fatal 'NewApi', 'InlinedApi'
-        enable 'UnusedResources'
-        checkReleaseBuilds true
-        textOutput 'stdout'
-    }
-
     compileOptions {
-        sourceCompatibility JavaVersion.VERSION_1_8
-        targetCompatibility JavaVersion.VERSION_1_8
+        sourceCompatibility = Versions.javaSourceCompatibility
+        targetCompatibility = Versions.javaTargetCompatibility
     }
     kotlinOptions {
-        jvmTarget = '1.8'
+        jvmTarget = Versions.jvmTarget
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-
     // kotlin
     implementation Libraries.kotlin_stdlib
     implementation Libraries.core_ktx
 
-    // support & design (android + google)
-    implementation SupportLibraries.appcompat
-    implementation Libraries.google_material
+    // android arch components
+    implementation Libraries.lifecycle_extension
 
     // dagger
     implementation Libraries.dagger_android
-    implementation Libraries.dagger_android_support
-    kapt Libraries.dagger_compiler
-    kapt Libraries.dagger_android_processor
 
     // testing
     testImplementation TestLibraries.junit
