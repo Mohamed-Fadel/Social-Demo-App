@@ -36,6 +36,8 @@ object Versions {
     val javaSourceCompatibility = JavaVersion.VERSION_1_8
     val javaTargetCompatibility = JavaVersion.VERSION_1_8
 
+    val swipe_refresh = "1.1.0"
+
 }
 
 object Libraries {
@@ -63,10 +65,14 @@ object Libraries {
     val rx_kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rx_kotlin}"
 
     val inject = "javax.inject:javax.inject:${Versions.inject}"
+
+    val toasty = "com.github.GrenderG:Toasty:1.5.0"
+    val glide = "com.github.bumptech.glide:glide:4.12.0"
 }
 
 object SupportLibraries {
     val appcompat = "androidx.appcompat:appcompat:${Versions.support}"
+    val swipeRefresh = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.swipe_refresh}"
 }
 
 object TestLibraries {
