@@ -1,10 +1,7 @@
 package com.example.newsfeedtestapp.di.component
 
 import com.example.newsfeedtestapp.MainApplication
-import com.example.newsfeedtestapp.di.module.ActivityBindingModule
-import com.example.newsfeedtestapp.di.module.AppModule
-import com.example.newsfeedtestapp.di.module.NetworkModule
-import com.example.newsfeedtestapp.di.module.ViewModelModule
+import com.example.newsfeedtestapp.di.module.*
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjector
@@ -22,6 +19,8 @@ import javax.inject.Singleton
         AndroidSupportInjectionModule::class,
         AppModule::class,
         NetworkModule::class,
+        DomainModule::class,
+        RemoteModule::class,
         ActivityBindingModule::class,
         ViewModelModule::class
     ]

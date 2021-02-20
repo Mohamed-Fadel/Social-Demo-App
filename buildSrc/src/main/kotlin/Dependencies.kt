@@ -4,6 +4,7 @@ object Modules {
     val domain = ":domain"
     val data = ":data"
     val presentation = ":presentation"
+    val remote = ":remote"
 }
 
 object Versions {
@@ -28,6 +29,8 @@ object Versions {
 
     val rx_android = "2.0.2"
     val rx_kotlin = "2.2.0"
+
+    val inject = "1"
 
     val jvmTarget = "1.8"
     val javaSourceCompatibility = JavaVersion.VERSION_1_8
@@ -58,6 +61,8 @@ object Libraries {
 
     val rx_android = "io.reactivex.rxjava2:rxandroid:${Versions.rx_android}"
     val rx_kotlin = "io.reactivex.rxjava2:rxkotlin:${Versions.rx_kotlin}"
+
+    val inject = "javax.inject:javax.inject:${Versions.inject}"
 }
 
 object SupportLibraries {

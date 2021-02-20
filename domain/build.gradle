@@ -7,5 +7,13 @@ java {
 }
 
 dependencies {
+    // kotlin
     implementation Libraries.kotlin_stdlib
+
+    // reactiveX
+    implementation Libraries.rx_android
+    implementation Libraries.rx_kotlin
+
+    // inject
+    implementation Libraries.inject
 }

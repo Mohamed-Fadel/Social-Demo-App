@@ -31,6 +31,7 @@ android {
 }
 
 dependencies {
+    implementation project(Modules.domain)
     // kotlin
     implementation Libraries.kotlin_stdlib
     implementation Libraries.core_ktx
@@ -38,8 +39,12 @@ dependencies {
     // android arch components
     implementation Libraries.lifecycle_extension
 
-    // dagger
-    implementation Libraries.dagger_android
+    // reactiveX
+    implementation Libraries.rx_android
+    implementation Libraries.rx_kotlin
+
+    // inject
+    implementation Libraries.inject
 
     // testing
     testImplementation TestLibraries.junit
