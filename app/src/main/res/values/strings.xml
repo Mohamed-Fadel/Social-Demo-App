@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">NewsFeedTestApp</string>
+    <string name="empty_post_list">No posts</string>
+    <string name="home">Home</string>
 </resources>

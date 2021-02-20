@@ -108,6 +108,9 @@ dependencies {
     implementation Libraries.google_material
     implementation Libraries.constraint_layout
     implementation Libraries.lifecycle_extension
+    implementation SupportLibraries.swipeRefresh
+    implementation Libraries.toasty
+    implementation Libraries.glide
 
     // dagger
     implementation Libraries.dagger_android

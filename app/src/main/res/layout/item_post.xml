@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="post"
+            type="com.example.newsfeedtestapp.presentation.postlist.models.PostItem" />
+    </data>
+
+    <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/feed_item_small_spacing">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/feed_item_root"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="?android:attr/selectableItemBackground">
+
+            <ImageView
+                android:id="@+id/feed_item_profile_image"
+                loadCircleImage="@{post.avatar}"
+                android:layout_width="@dimen/feed_image_size"
+                android:layout_height="@dimen/feed_image_size"
+                android:padding="@dimen/feed_content_padding"
+                tools:src="@drawable/ic_account" />
+
+            <TextView
+                android:id="@+id/feed_item_profile_name"
+                style="@style/TextTitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{post.username}"
+                app:layout_constraintBottom_toTopOf="@+id/feed_item_profile_email"
+                app:layout_constraintLeft_toRightOf="@id/feed_item_profile_image"
+                app:layout_constraintTop_toTopOf="@id/feed_item_profile_image"
+                app:layout_constraintVertical_chainStyle="packed"
+                tools:text="Some User" />
+
+            <TextView
+                android:id="@+id/feed_item_profile_email"
+                style="@style/TextSubtitleStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{post.email}"
+                app:layout_constraintBottom_toBottomOf="@id/feed_item_profile_image"
+                app:layout_constraintLeft_toRightOf="@id/feed_item_profile_image"
+                app:layout_constraintTop_toBottomOf="@+id/feed_item_profile_name"
+                tools:text="abc@example.com" />
+
+            <TextView
+                android:id="@+id/feed_item_title"
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:maxLines="@integer/feed_title_max_lines"
+                android:paddingStart="@dimen/feed_content_padding"
+                android:paddingTop="@dimen/feed_item_small_spacing"
+                android:paddingEnd="@dimen/feed_content_padding"
+                android:paddingBottom="@dimen/feed_item_small_spacing"
+                android:text="@{post.title}"
+                android:textStyle="bold"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/feed_item_profile_image"
+                tools:text="This is a title" />
+
+            <TextView
+                android:id="@+id/feed_item_desc"
+                style="@style/TextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:maxLines="@integer/feed_desc_max_lines"
+                android:paddingStart="@dimen/feed_content_padding"
+                android:paddingTop="0dp"
+                android:paddingEnd="@dimen/feed_content_padding"
+                android:paddingBottom="@dimen/feed_content_padding"
+                android:text="@{post.body}"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/feed_item_title"
+                tools:text="This is some really long description hoping that the ellipsize will kick in and avoid a really long post. This ellipsize should kick in at some time now" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+</layout>
