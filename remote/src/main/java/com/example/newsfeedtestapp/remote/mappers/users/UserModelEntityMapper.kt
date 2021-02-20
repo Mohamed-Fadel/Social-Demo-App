@@ -13,7 +13,7 @@ class UserModelEntityMapper @Inject constructor() :
             name = model.name,
             username = model.username,
             phone = model.phone,
-            website = model.website
+            email = model.email
         )
 
 }
