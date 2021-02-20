@@ -9,7 +9,7 @@ class PostModelEntityMapper @Inject constructor() :
     EntityMapper<PostModel, PostEntity> {
     override fun mapFromModel(model: PostModel): PostEntity =
         PostEntity(
-            user_id = model.user_id,
+            user_id = model.userId,
             id = model.id,
             title = model.title,
             body = model.body,

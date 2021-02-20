@@ -14,7 +14,8 @@ class UserMapper @Inject constructor() :
             name = type.name,
             username = type.username,
             phone = type.phone,
-            website = type.website
+            email = type.email,
+            avatar = "https://i.pravatar.cc/150?u=${type.email}"
         )
     }
 
@@ -24,7 +25,7 @@ class UserMapper @Inject constructor() :
             name = type.name,
             username = type.username,
             phone = type.phone,
-            website = type.website
+            email = type.email
         )
     }
 }
