@@ -4,6 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import com.example.newsfeedtestapp.di.AppViewModelFactory
 import com.example.newsfeedtestapp.di.ViewModelKey
+import com.example.newsfeedtestapp.presentation.postlist.viewmodel.PostDetailsViewModel
 import com.example.newsfeedtestapp.presentation.postlist.viewmodel.PostListViewModel
 import dagger.Binds
 import dagger.Module
@@ -26,5 +27,10 @@ abstract class ViewModelModule {
     @IntoMap
     @ViewModelKey(PostListViewModel::class)
     internal abstract fun postListViewModel(viewModel: PostListViewModel): ViewModel
+
+    @Binds
+    @IntoMap
+    @ViewModelKey(PostDetailsViewModel::class)
+    internal abstract fun postDetailsViewModel(viewModel: PostDetailsViewModel): ViewModel
 
 }

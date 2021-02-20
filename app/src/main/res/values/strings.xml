@@ -2,4 +2,6 @@
     <string name="app_name">NewsFeedTestApp</string>
     <string name="empty_post_list">No posts</string>
     <string name="home">Home</string>
+    <string name="post">Post</string>
+    <string name="empty_comment_list">No comments</string>
 </resources>

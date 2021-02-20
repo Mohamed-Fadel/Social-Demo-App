@@ -1,6 +1,7 @@
 package com.example.newsfeedtestapp.di.module
 
 import com.example.newsfeedtestapp.di.scope.ActivityScoped
+import com.example.newsfeedtestapp.ui.post.PostDetailsActivity
 import com.example.newsfeedtestapp.ui.postlist.PostListActivity
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
@@ -16,5 +17,9 @@ abstract class ActivityBindingModule {
     @ActivityScoped
     @ContributesAndroidInjector()
     internal abstract fun postListActivity(): PostListActivity
+
+    @ActivityScoped
+    @ContributesAndroidInjector()
+    internal abstract fun postDetailsActivity(): PostDetailsActivity
 
 }

@@ -26,14 +26,14 @@ class GetUsersPostsUseCase @Inject constructor(
             BiFunction { userList, postList -> mapper.map(userList, postList) })
 }
 
-class GetUserPostDetailsUseCase @Inject constructor(
+class GetUserPostUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val postRepository: PostRepository,
     private val mapper: UserPostMapper
 ) {
 
-    fun get(userId: Int, postId: Int): Single<CombinedUserPost> =
-        Single.zip(userRepository.getUser(userId), postRepository.getPost(postId),
+    fun get(userId: String, postId: String): Single<CombinedUserPost> =
+        Single.zip(userRepository.getUser(userId.toInt()), postRepository.getPost(postId.toInt()),
             BiFunction { user, post -> mapper.map(user, post) })
 }
 

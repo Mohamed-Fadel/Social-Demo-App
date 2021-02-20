@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.newsfeedtestapp.R
 import com.example.newsfeedtestapp.databinding.ActivityPostListBinding
 import com.example.newsfeedtestapp.extensions.viewModelProvider
+import com.example.newsfeedtestapp.navigation.PostListNavigator
 import com.example.newsfeedtestapp.presentation.postlist.viewmodel.PostListViewModel
 import com.example.newsfeedtestapp.presentation.result.EventObserver
 import com.example.newsfeedtestapp.ui.BaseActivity
@@ -17,6 +18,9 @@ import javax.inject.Inject
 class PostListActivity : BaseActivity() {
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    @Inject
+    lateinit var postListNavigator: PostListNavigator
 
     private lateinit var postListViewModel: PostListViewModel
 
@@ -39,6 +43,7 @@ class PostListActivity : BaseActivity() {
 
         postListViewModel.postList.observe(this, Observer { list ->
             rvList.adapter = PostListAdapter {
+                postListNavigator.navigate(this@PostListActivity, it)
             }.apply {
                 submitList(list.toMutableList())
             }
