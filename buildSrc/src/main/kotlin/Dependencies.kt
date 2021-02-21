@@ -18,7 +18,9 @@ object Versions {
 
     val support = "1.2.0"
 
-    val junit = "4.+"
+    val junit = "4.12"
+    val mockito = "3.7.7"
+
 
     val dagger = "2.24"
 
@@ -77,6 +79,9 @@ object SupportLibraries {
 
 object TestLibraries {
     val junit = "junit:junit:${Versions.junit}"
+    val mockito = "org.mockito:mockito-core:${Versions.mockito}"
+    val lifecycle_testing = "android.arch.core:core-testing:${Versions.lifecycle}"
+
 }
 
 object AndroidTestLibraries {

@@ -10,7 +10,7 @@ import javax.inject.Inject
 
 data class CombinedUserPost(val user: User, val post: Post)
 
-class GetUsersPostsUseCase @Inject constructor(
+open class GetUsersPostsUseCase @Inject constructor(
     private val userRepository: UserRepository,
     private val postRepository: PostRepository,
     private val mapper: UserPostMapper

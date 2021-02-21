@@ -22,4 +22,8 @@ dependencies {
     // inject
     implementation Libraries.inject
 
+    // test
+    testImplementation TestLibraries.junit
+    testImplementation TestLibraries.mockito
+
 }
