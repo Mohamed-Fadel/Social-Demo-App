@@ -27,6 +27,8 @@
                 android:layout_width="@dimen/feed_image_size"
                 android:layout_height="@dimen/feed_image_size"
                 android:padding="@dimen/feed_content_padding"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
                 tools:src="@drawable/ic_account" />
 
             <TextView
@@ -36,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{post.username}"
                 app:layout_constraintBottom_toTopOf="@+id/feed_item_profile_email"
-                app:layout_constraintLeft_toRightOf="@id/feed_item_profile_image"
+                app:layout_constraintStart_toEndOf="@id/feed_item_profile_image"
                 app:layout_constraintTop_toTopOf="@id/feed_item_profile_image"
                 app:layout_constraintVertical_chainStyle="packed"
                 tools:text="Some User" />
@@ -48,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:text="@{post.email}"
                 app:layout_constraintBottom_toBottomOf="@id/feed_item_profile_image"
-                app:layout_constraintLeft_toRightOf="@id/feed_item_profile_image"
+                app:layout_constraintStart_toEndOf="@id/feed_item_profile_image"
                 app:layout_constraintTop_toBottomOf="@+id/feed_item_profile_name"
                 tools:text="abc@example.com" />
 
@@ -64,8 +66,8 @@
                 android:paddingBottom="@dimen/feed_item_small_spacing"
                 android:text="@{post.title}"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/feed_item_profile_image"
                 tools:text="This is a title" />
 
@@ -81,8 +83,8 @@
                 android:paddingEnd="@dimen/feed_content_padding"
                 android:paddingBottom="@dimen/feed_content_padding"
                 android:text="@{post.body}"
-                app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/feed_item_title"
                 tools:text="This is some really long description hoping that the ellipsize will kick in and avoid a really long post. This ellipsize should kick in at some time now" />
 

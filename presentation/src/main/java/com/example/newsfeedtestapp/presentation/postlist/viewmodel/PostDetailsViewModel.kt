@@ -43,6 +43,10 @@ class PostDetailsViewModel @Inject constructor(
     val commentList: LiveData<List<CommentItem>>
         get() = _commentList
 
+    private val _commentsNum = MediatorLiveData<Int>()
+    val commentsNum: LiveData<Int>
+        get() = _commentsNum
+
     private val _postDetails = MediatorLiveData<PostItem>()
     val postDetails: LiveData<PostItem>
         get() = _postDetails
@@ -65,6 +69,9 @@ class PostDetailsViewModel @Inject constructor(
 
         _postDetails.observeDataFrom(postDetailsResult)
         _commentList.observeDataFrom(commentListResult)
+        _commentsNum.observeDataFrom(commentListResult) {
+            it.size
+        }
 
     }
 

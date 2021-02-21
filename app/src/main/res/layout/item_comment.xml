@@ -42,8 +42,8 @@
                 android:padding="@dimen/comment_content_spacing"
                 android:text="@{comment.name}"
                 android:textStyle="bold"
-                app:layout_constraintLeft_toRightOf="@id/comment_user_image"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toEndOf="@id/comment_user_image"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="Some User" />
 
@@ -59,8 +59,8 @@
                 android:paddingEnd="@dimen/comment_content_spacing"
                 android:paddingBottom="@dimen/comment_content_spacing"
                 android:text="@{comment.body}"
-                app:layout_constraintLeft_toLeftOf="@id/comment_user_name"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@id/comment_user_name"
                 app:layout_constraintTop_toBottomOf="@id/comment_user_name"
                 tools:text="This is some really long comment" />
 

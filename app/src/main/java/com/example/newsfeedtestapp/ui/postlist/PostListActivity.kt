@@ -8,6 +8,7 @@ import com.example.newsfeedtestapp.R
 import com.example.newsfeedtestapp.databinding.ActivityPostListBinding
 import com.example.newsfeedtestapp.extensions.viewModelProvider
 import com.example.newsfeedtestapp.navigation.PostListNavigator
+import com.example.newsfeedtestapp.presentation.postlist.models.PostItem
 import com.example.newsfeedtestapp.presentation.postlist.viewmodel.PostListViewModel
 import com.example.newsfeedtestapp.presentation.result.EventObserver
 import com.example.newsfeedtestapp.ui.BaseActivity
@@ -42,13 +43,17 @@ class PostListActivity : BaseActivity() {
         })
 
         postListViewModel.postList.observe(this, Observer { list ->
-            rvList.adapter = PostListAdapter {
-                postListNavigator.navigate(this@PostListActivity, it)
-            }.apply {
-                submitList(list.toMutableList())
-            }
+            setupPostList(list)
 
         })
 
+    }
+
+    private fun setupPostList(list: List<PostItem>) {
+        rvList.adapter = PostListAdapter {
+            postListNavigator.navigate(this@PostListActivity, it)
+        }.apply {
+            submitList(list.toMutableList())
+        }
     }
 }

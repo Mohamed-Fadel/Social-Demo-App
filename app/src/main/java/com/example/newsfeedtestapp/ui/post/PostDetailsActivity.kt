@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.newsfeedtestapp.R
 import com.example.newsfeedtestapp.databinding.ActivityPostDetailsBinding
 import com.example.newsfeedtestapp.extensions.viewModelProvider
+import com.example.newsfeedtestapp.presentation.postlist.models.CommentItem
 import com.example.newsfeedtestapp.presentation.postlist.viewmodel.PostDetailsViewModel
 import com.example.newsfeedtestapp.presentation.result.EventObserver
 import com.example.newsfeedtestapp.ui.BaseActivity
@@ -42,15 +43,14 @@ class PostDetailsActivity : BaseActivity() {
         })
 
         postDetailsViewModel.commentList.observe(this, Observer { list ->
-            rvList.adapter = CommentListAdapter {
-            }.apply {
-                submitList(list.toMutableList())
-            }
-
-            post_comments_header.text =
-                resources.getQuantityString(R.plurals.comments_label, list.size, list.size)
-
+            setupCommentList(list)
         })
+
+        postDetailsViewModel.commentsNum.observe(this, Observer {
+            setCommentNumberText(it)
+        })
+
+        removeMaxLineLimits()
 
         val userId = intent!!.getStringExtra(EXTRA_USER_ID)!!
         val postId = intent!!.getStringExtra(EXTRA_POST_ID)!!
@@ -61,7 +61,18 @@ class PostDetailsActivity : BaseActivity() {
             postDetailsViewModel.onScreenStarted(userId, postId)
         }
 
-        removeMaxLineLimits()
+    }
+
+    private fun setCommentNumberText(count: Int) {
+        post_comments_header.text =
+            resources.getQuantityString(R.plurals.comments_label, count, count)
+    }
+
+    private fun setupCommentList(list: List<CommentItem>) {
+        rvList.adapter = CommentListAdapter {
+        }.apply {
+            submitList(list.toMutableList())
+        }
     }
 
     private fun removeMaxLineLimits() {
